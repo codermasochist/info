@@ -30,7 +30,12 @@
         .container {
             text-align: center;
             z-index: 2;
-            margin-top: -115px;
+        }
+
+        .avatar {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
         }
 
         .avatar img {
@@ -39,6 +44,37 @@
             border-radius: 50%;
             border: 3px solid #ccc;
             object-fit: cover;
+            position: relative;
+        }
+
+        .avatar::after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 200px;
+            background: #fff;
+            opacity: 0.5;
+            position: absolute;
+            top: -100px;
+            left: -40px;
+            transform: rotate(45deg);
+            z-index: 1;
+            animation: slideme 3s infinite ease-in-out;
+        }
+
+        @keyframes slideme {
+            0% {
+                left: -30px;
+                margin-left: 0px;
+            }
+            30% {
+                left: 110%;
+                margin-left: 80px;
+            }
+            100% {
+                left: 110%;
+                margin-left: 80px;
+            }
         }
 
         .link {
@@ -58,7 +94,9 @@
             margin-top: 20px;
         }
 
-        button {
+        .btn-new {
+            overflow: hidden;
+            position: relative;
             background: none;
             border: 1px solid #ccc;
             color: #ccc;
@@ -69,16 +107,30 @@
             transition: all 0.3s ease;
         }
 
-        button:hover {
+        .btn-new:hover {
             background: #ccc;
             color: #000;
+        }
+
+        .btn-new::after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 200px;
+            background: #fff;
+            opacity: 0.5;
+            position: absolute;
+            top: -100px;
+            left: -40px;
+            transform: rotate(45deg);
+            z-index: 1;
+            animation: slideme 3s infinite ease-in-out;
         }
 
         .about-container {
             margin-top: 30px;
             background: rgba(50, 50, 50, 0.7);
             border: 2px solid #fff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             padding: 20px;
             width: 300px;
@@ -96,13 +148,13 @@
 <body>
     <div class="container">
         <div class="avatar">
-            <img src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar" id="avatar">
+            <img src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar">
         </div>
-        <a href="https://t.me/codermasochist" class="link" id="short-link">t.me/Assa</a>
+        <a href="https://t.me/codermasochist" class="link">t.me/Assa</a>
         <div class="buttons">
-            <button>Кнопка 1</button>
-            <button>Кнопка 2</button>
-            <button>Кнопка 3</button>
+            <a href="https://t.me/makimalove" target="_blank"><button class="btn-new">Channel</button></a>
+            <a href="https://t.me/cilsex" target="_blank"><button class="btn-new">Click</button></a>
+            <a href="https://t.me/asicrev" target="_blank"><button class="btn-new">Reviews</button></a>
         </div>
         <div class="about-container">
             <strong>about Assa's:</strong>
@@ -117,18 +169,5 @@
     <video autoplay muted loop id="bg-video">
         <source src="https://envs.sh/aBb.mp4" type="video/mp4">
     </video>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const avatar = document.getElementById("avatar");
-            const timestamp = new Date().getTime();
-            avatar.src = `https://t.me/i/userpic/320/codermasochist.jpg?${timestamp}`;
-
-            const shortLink = document.getElementById("short-link");
-            shortLink.addEventListener("click", (e) => {
-                e.preventDefault();
-                window.location.href = "https://t.me/codermasochist";
-            });
-        });
-    </script>
 </body>
 </html>
