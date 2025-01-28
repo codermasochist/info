@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assa</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #ccc;
+            overflow: hidden;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            margin-top: -115px;
+        }
+
+        .avatar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #ccc;
+            object-fit: cover;
+        }
+
+        .link {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .link:hover {
+            color: #fff;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            background: none;
+            border: 1px solid #ccc;
+            color: #ccc;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #ccc;
+            color: #000;
+        }
+
+        .about-container {
+            margin-top: 30px;
+            background: rgba(50, 50, 50, 0.7);
+            border: 2px solid #fff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .about-container hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="avatar">
+            <img src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar" id="avatar">
+        </div>
+        <a href="https://t.me/codermasochist" class="link" id="short-link">t.me/Assa</a>
+        <div class="buttons">
+            <button>Кнопка 1</button>
+            <button>Кнопка 2</button>
+            <button>Кнопка 3</button>
+        </div>
+        <div class="about-container">
+            <strong>about Assa's:</strong>
+            <hr>
+            <p>Name: ? ? ? ?</p>
+            <p>Nickname: Assa.</p>
+            <p>Birthdate: 30.06.28 (16 y. o.)</p>
+            <p>Gender: Male | he/him</p>
+            <p>Hobbies: anime, coding & sleep.</p>
+        </div>
+    </div>
+    <video autoplay muted loop id="bg-video">
+        <source src="https://envs.sh/aBb.mp4" type="video/mp4">
+    </video>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const avatar = document.getElementById("avatar");
+            const timestamp = new Date().getTime();
+            avatar.src = `https://t.me/i/userpic/320/codermasochist.jpg?${timestamp}`;
+
+            const shortLink = document.getElementById("short-link");
+            shortLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.location.href = "https://t.me/codermasochist";
+            });
+        });
+    </script>
+</body>
+</html>
