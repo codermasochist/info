@@ -32,49 +32,12 @@
             z-index: 2;
         }
 
-        .avatar {
-            position: relative;
-            display: inline-block;
-            overflow: hidden;
-        }
-
         .avatar img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             border: 3px solid #ccc;
             object-fit: cover;
-            position: relative;
-        }
-
-        .avatar::after {
-            content: "";
-            display: block;
-            width: 30px;
-            height: 200px;
-            background: #fff;
-            opacity: 0.5;
-            position: absolute;
-            top: -100px;
-            left: -40px;
-            transform: rotate(45deg);
-            z-index: 1;
-            animation: slideme 3s infinite ease-in-out;
-        }
-
-        @keyframes slideme {
-            0% {
-                left: -30px;
-                margin-left: 0px;
-            }
-            30% {
-                left: 110%;
-                margin-left: 80px;
-            }
-            100% {
-                left: 110%;
-                margin-left: 80px;
-            }
         }
 
         .link {
@@ -97,6 +60,7 @@
         .btn-new {
             overflow: hidden;
             position: relative;
+            display: inline-block;
             background: none;
             border: 1px solid #ccc;
             color: #ccc;
@@ -112,7 +76,7 @@
             color: #000;
         }
 
-        .btn-new::after {
+        .btn-new:after {
             content: "";
             display: block;
             width: 30px;
@@ -120,17 +84,32 @@
             background: #fff;
             opacity: 0.5;
             position: absolute;
-            top: -100px;
             left: -40px;
+            top: -100px;
             transform: rotate(45deg);
-            z-index: 1;
-            animation: slideme 3s infinite ease-in-out;
+            animation: slideme 3s ease-in-out infinite;
+        }
+
+        @keyframes slideme {
+            0% {
+                left: -30px;
+                margin-left: 0px;
+            }
+            30% {
+                left: 110%;
+                margin-left: 80px;
+            }
+            100% {
+                left: 110%;
+                margin-left: 80px;
+            }
         }
 
         .about-container {
             margin-top: 30px;
             background: rgba(50, 50, 50, 0.7);
             border: 2px solid #fff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             padding: 20px;
             width: 300px;
@@ -152,12 +131,12 @@
         </div>
         <a href="https://t.me/codermasochist" class="link">t.me/Assa</a>
         <div class="buttons">
-            <a href="https://t.me/makimalove" target="_blank"><button class="btn-new">Channel</button></a>
-            <a href="https://t.me/cilsex" target="_blank"><button class="btn-new">Click</button></a>
-            <a href="https://t.me/asicrev" target="_blank"><button class="btn-new">Reviews</button></a>
+            <button class="btn-new" onclick="window.open('https://t.me/makimalove')">Channel</button>
+            <button class="btn-new" onclick="window.open('https://t.me/cilsex')">Click</button>
+            <button class="btn-new" onclick="window.open('https://t.me/asicrev')">Reviews</button>
         </div>
         <div class="about-container">
-            <strong>about Assa's:</strong>
+            <strong>About Assa`s:</strong>
             <hr>
             <p>Name: ? ? ? ?</p>
             <p>Nickname: Assa.</p>
