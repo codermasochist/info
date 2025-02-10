@@ -32,12 +32,23 @@
             z-index: 2;
         }
 
-        .avatar img {
+        .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             border: 3px solid #ccc;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar img, .avatar video {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
             object-fit: cover;
+            display: none;
         }
 
         .link {
@@ -127,7 +138,8 @@
 <body>
     <div class="container">
         <div class="avatar">
-            <img src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar">
+            <video id="avatarVideo" autoplay loop muted playsinline></video>
+            <img id="avatarImage" alt="Telegram Avatar">
         </div>
         <a href="https://t.me/codermasochist" class="link">t.me/Assa</a>
         <div class="buttons">
@@ -148,5 +160,26 @@
      <video autoplay muted loop id="bg-video" preload="auto">
         <source src="https://envs.sh/aZC.mp4" type="video/mp4">
      </video>
+
+    <script>
+    async function loadAvatar() {
+        let username = "codermasochist"; 
+        let image = document.getElementById("avatarImage");
+        let video = document.getElementById("avatarVideo");
+
+        let response = await fetch(`https://t.me/i/userpic/320/${username}.jpg`);
+
+        if (response.ok) {
+            image.src = response.url;
+            image.style.display = "block";
+        } else {
+            image.style.display = "none";
+            video.src = `https://t.me/i/userpic/320/${username}.mp4`;
+            video.style.display = "block";
+        }
+    }
+
+    loadAvatar();
+    </script>
 </body>
 </html>
