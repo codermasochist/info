@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>†</title>
+    <title>sex</title>
     <style>
         body {
             margin: 0;
@@ -44,7 +44,7 @@
             margin: 0 auto;
         }
 
-        .avatar video {
+        .avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -137,11 +137,9 @@
 <body>
     <div class="container">
         <div class="avatar">
-            <video autoplay muted loop playsinline>
-                <source src="https://envs.sh/hBJ.mp4" type="video/mp4">
-            </video>
+            <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar">
         </div>
-        <a href="https://t.me/codermasochist" class="link">t.me/Assa</a>
+        <a href="https://t.me/codermasochist" class="link">UID: 7130298880</a>
         <div class="buttons">
             <button class="btn-new" onclick="window.open('https://t.me/makimalove')">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>
             <button class="btn-new" onclick="window.open('https://t.me/cilsex')">𝚂𝚒𝚐𝚗𝚜 👀</button>
@@ -159,5 +157,16 @@
      <video autoplay muted loop id="bg-video" preload="auto">
         <source src="https://x0.at/PJQ-.mp4" type="video/mp4">
      </video>
+
+     <script>
+        const username = "codermasochist";
+        const avatar = document.getElementById("tg-avatar");
+
+        function updateAvatar() {
+            avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;
+        }
+
+        setInterval(updateAvatar, 60000);
+    </script>
 </body>
 </html>
