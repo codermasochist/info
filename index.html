@@ -158,7 +158,19 @@
       color: #888;
       font-size: 14px;
     }
+
+    .emoji-animation {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      z-index: 10;
+    }
   </style>
+  <!-- Lottie library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.11/bodymovin.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -167,6 +179,8 @@
       <div class="nft-decor">
         <video src="https://example.com/your-nft-flower.webm" autoplay loop muted></video>
       </div>
+      <!-- Emoji animation -->
+      <div class="emoji-animation" id="emoji-animation"></div>
     </div>
     <a href="https://t.me/codermasochist" class="link">UID: 7130298880</a>
     <div class="buttons">
@@ -201,6 +215,16 @@
     }
 
     setInterval(updateAvatar, 60000);
+
+    // Initialize Lottie animation
+    const emojiAnimation = bodymovin.loadAnimation({
+      container: document.getElementById('emoji-animation'),
+      path: 'https://x0.at/0oXn.tgs',  // Path to your .tgs file
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      name: 'emoji-animation'
+    });
   </script>
 </body>
 </html>
