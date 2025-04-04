@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bio@assa.lol:~$</title>
+    <title>Info | Assa.</title>
     <style>
         body {
             margin: 0;
@@ -142,6 +142,18 @@
             color: #888;
             z-index: 3;
         }
+
+        @media screen and (min-width: 768px) {
+            #bg-video {
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            #bg-video {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -149,7 +161,7 @@
         <div class="avatar">
             <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar">
         </div>
-        <a href="https://t.me/codermasochist" class="link">UID: 7130298880</a>
+        <a href="https://t.me/codermasochist" class="link">ID: 7130298880</a>
         <div class="buttons">
             <button class="btn-new" onclick="window.open('https://t.me/makimalove')">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>
             <button class="btn-new" onclick="window.open('https://t.me/cilsex')">𝚂𝚒𝚐𝚗𝚜 👀</button>
@@ -166,8 +178,12 @@
     </div>
 
     <div class="footer">© 2025 codermasochist.</div>
-
+    
     <video autoplay muted loop id="bg-video" preload="auto">
+        <source src="https://x0.at/I4av.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay muted loop id="bg-video-mobile" preload="auto">
         <source src="https://x0.at/PJQ-.mp4" type="video/mp4">
     </video>
 
