@@ -1,172 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bio@assa.lol:~$</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            color: #ccc;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>bio@assa.lol:~$</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: #ccc;
+      overflow: hidden;
+    }
 
-        #bg-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-        .container {
-            text-align: center;
-            z-index: 2;
-        }
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
 
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid #ccc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-        }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      position: relative;
+    }
 
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-        .link {
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            font-size: 16px;
-            color: #ccc;
-            transition: color 0.3s ease;
-        }
+    .nft-decor {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background-color: #111;
+      overflow: hidden;
+      box-shadow: 0 0 5px #ffb7e5;
+    }
 
-        .link:hover {
-            color: #fff;
-        }
+    .nft-decor img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-        .buttons {
-            margin-top: 20px;
-        }
+    .link {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      font-size: 16px;
+      color: #ccc;
+      transition: color 0.3s ease;
+    }
 
-        .btn-new {
-            overflow: hidden;
-            position: relative;
-            display: inline-block;
-            background: none;
-            border: 1px solid #ccc;
-            color: #ccc;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    .link:hover {
+      color: #fff;
+    }
 
-        .btn-new:hover {
-            background: #ccc;
-            color: #000;
-        }
+    .buttons {
+      margin-top: 20px;
+    }
 
-        .btn-new:after {
-            content: "";
-            display: block;
-            width: 30px;
-            height: 200px;
-            background: #fff;
-            opacity: 0.5;
-            position: absolute;
-            left: -40px;
-            top: -100px;
-            transform: rotate(45deg);
-            animation: slideme 3s ease-in-out infinite;
-        }
+    .btn-new {
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      background: none;
+      border: 1px solid #ccc;
+      color: #ccc;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        @keyframes slideme {
-            0% {
-                left: -30px;
-                margin-left: 0px;
-            }
-            30% {
-                left: 110%;
-                margin-left: 80px;
-            }
-            100% {
-                left: 110%;
-                margin-left: 80px;
-            }
-        }
+    .btn-new:hover {
+      background: #ccc;
+      color: #000;
+    }
 
-        .about-container {
-            margin-top: 30px;
-            background: rgba(50, 50, 50, 0.7);
-            border: 2px solid #fff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            padding: 20px;
-            width: 300px;
-            color: #fff;
-            text-align: center;
-        }
+    .btn-new:after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 200px;
+      background: #fff;
+      opacity: 0.5;
+      position: absolute;
+      left: -40px;
+      top: -100px;
+      transform: rotate(45deg);
+      animation: slideme 3s ease-in-out infinite;
+    }
 
-        .about-container hr {
-            border: 0;
-            border-top: 1px solid #ccc;
-            margin: 10px 0;
-        }
-    </style>
+    @keyframes slideme {
+      0% {
+        left: -30px;
+        margin-left: 0px;
+      }
+      30% {
+        left: 110%;
+        margin-left: 80px;
+      }
+      100% {
+        left: 110%;
+        margin-left: 80px;
+      }
+    }
+
+    .about-container {
+      margin-top: 30px;
+      background: rgba(50, 50, 50, 0.7);
+      border: 2px solid #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .about-container hr {
+      border: 0;
+      border-top: 1px solid #ccc;
+      margin: 10px 0;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      z-index: 3;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="avatar">
-            <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar">
-        </div>
-        <a href="https://t.me/codermasochist" class="link">UID: 7130298880</a>
-        <div class="buttons">
-            <button class="btn-new" onclick="window.open('https://t.me/makimalove')">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>
-            <button class="btn-new" onclick="window.open('https://t.me/cilsex')">𝚂𝚒𝚐𝚗𝚜 👀</button>
-            <button class="btn-new" onclick="window.open('https://t.me/asicrev')">𝚁𝚎𝚟𝚒𝚎𝚠𝚜</button>
-        </div>
-        <div class="about-container">
-            <strong>𝙰𝚋𝚘𝚞𝚝 𝚖𝚎:</strong>
-            <hr>
-            <p>𝙽𝚊𝚖𝚎: À𝚜𝚜𝚊.</p>
-            <p>𝙱𝚒𝚛𝚝𝚑𝚍𝚊𝚝𝚎: 𝟹𝟶.𝟶𝟼.𝟸𝟶𝟶𝟾. (𝟷𝟼 𝚢. 𝚘.)</p>
-            <p>𝙶𝚎𝚗𝚍𝚎𝚛: 𝙼𝚊𝚕𝚎. (𝚑𝚎/𝚑𝚒𝚖)</p>
-            <p>𝙷𝚘𝚋𝚋𝚒𝚎𝚜: 𝚊𝚗𝚒𝚖𝚎, 𝚌𝚘𝚍𝚒𝚗𝚐 & 𝚜𝚕𝚎𝚎𝚙.</p>
-        </div>
+  <div class="container">
+    <div class="avatar">
+      <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar" />
+      <div class="nft-decor">
+        <img src="https://cdn4.telegram-cdn.org/file/4d50609f2e27f18bb2f4e5dddc5cbf60/photo.jpg" alt="NFT Flower" />
+      </div>
     </div>
-     <video autoplay muted loop id="bg-video" preload="auto">
-        <source src="https://x0.at/PJQ-.mp4" type="video/mp4">
-     </video>
+    <a href="https://t.me/codermasochist" class="link">UID: 7130298880</a>
+    <div class="buttons">
+      <button class="btn-new" onclick="window.open('https://t.me/makimalove')">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>
+      <button class="btn-new" onclick="window.open('https://t.me/cilsex')">𝚂𝚒𝚐𝚗𝚜 👀</button>
+      <button class="btn-new" onclick="window.open('https://t.me/asicrev')">𝚁𝚎𝚟𝚒𝚎𝚠𝚜</button>
+    </div>
+    <div class="about-container">
+      <strong>𝙰𝚋𝚘𝚞𝚝 𝚖𝚎:</strong>
+      <hr />
+      <p>𝙽𝚊𝚖𝚎: À𝚜𝚜𝚊.</p>
+      <p>𝙱𝚒𝚛𝚝𝚑𝚍𝚊𝚝𝚎: 𝟹𝟶.𝟶𝟼.𝟸𝟶𝟶𝟾. (𝟷𝟼 𝚢. 𝚘.)</p>
+      <p>𝙶𝚎𝚗𝚍𝚎𝚛: 𝙼𝚊𝚕𝚎. (𝚑𝚎/𝚑𝚒𝚖)</p>
+      <p>𝙷𝚘𝚋𝚋𝚒𝚎𝚜: 𝚊𝚗𝚒𝚖𝚎, 𝚌𝚘𝚍𝚒𝚗𝚐 & 𝚜𝚕𝚎𝚎𝚙.</p>
+    </div>
+  </div>
 
-     <script>
-        const username = "codermasochist";
-        const avatar = document.getElementById("tg-avatar");
+  <div class="footer">© 2025 codermasochist.</div>
 
-        function updateAvatar() {
-            avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;
-        }
+  <video autoplay muted loop id="bg-video" preload="auto">
+    <source src="https://x0.at/PJQ-.mp4" type="video/mp4" />
+  </video>
 
-        setInterval(updateAvatar, 60000);
-    </script>
+  <script>
+    const username = "codermasochist";
+    const avatar = document.getElementById("tg-avatar");
+
+    function updateAvatar() {
+      avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;
+    }
+
+    setInterval(updateAvatar, 60000);
+  </script>
 </body>
 </html>
