@@ -1,182 +1,254 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Info | Assa</title>  
-    <style>  
-        body {  
-            margin: 0;  
-            padding: 0;  
-            display: flex;  
-            justify-content: center;  
-            align-items: center;  
-            height: 100vh;  
-            font-family: Arial, sans-serif;  
-            color: #ccc;  
-            overflow: hidden;  
-        }  #bg-video {  
-        position: fixed;  
-        top: 0;  
-        left: 0;  
-        width: 100%;  
-        height: 100%;  
-        object-fit: cover;  
-        z-index: -1;  
-    }  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Info | Assa</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #ccc;
+      overflow: hidden;
+    }
 
-    .container {  
-        text-align: center;  
-        z-index: 2;  
-    }  
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-    .avatar {  
-        width: 120px;  
-        height: 120px;  
-        border-radius: 50%;  
-        overflow: hidden;  
-        border: 3px solid #ccc;  
-        display: flex;  
-        justify-content: center;  
-        align-items: center;  
-        margin: 0 auto;  
-    }  
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #444, #777);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
 
-    .avatar img {  
-        width: 100%;  
-        height: 100%;  
-        object-fit: cover;  
-    }  
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #999;
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
 
-    .link {  
-        display: inline-block;  
-        margin-top: 10px;  
-        text-decoration: none;  
-        font-size: 16px;  
-        color: #ccc;  
-        transition: color 0.3s ease;  
-    }  
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-    .link:hover {  
-        color: #fff;  
-    }  
+    .loading-text {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #eee;
+      display: flex;
+      gap: 3px;
+    }
 
-    .buttons {  
-        margin-top: 20px;  
-    }  
+    .loading-text span {
+      animation: bounce 1.2s infinite;
+    }
 
-    .btn-new {  
-        overflow: hidden;  
-        position: relative;  
-        display: inline-block;  
-        background: none;  
-        border: 1px solid #ccc;  
-        color: #ccc;  
-        padding: 10px 20px;  
-        margin: 5px;  
-        border-radius: 5px;  
-        cursor: pointer;  
-        transition: all 0.3s ease;  
-    }  
+    .loading-text span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
 
-    .btn-new:hover {  
-        background: #ccc;  
-        color: #000;  
-    }  
+    .loading-text span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
 
-    .btn-new:after {  
-        content: "";  
-        display: block;  
-        width: 30px;  
-        height: 200px;  
-        background: #fff;  
-        opacity: 0.5;  
-        position: absolute;  
-        left: -40px;  
-        top: -100px;  
-        transform: rotate(45deg);  
-        animation: slideme 3s ease-in-out infinite;  
-    }  
+    @keyframes bounce {
+      0%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-8px);
+      }
+    }
 
-    @keyframes slideme {  
-        0% {  
-            left: -30px;  
-            margin-left: 0px;  
-        }  
-        30% {  
-            left: 110%;  
-            margin-left: 80px;  
-        }  
-        100% {  
-            left: 110%;  
-            margin-left: 80px;  
-        }  
-    }  
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
 
-    .about-container {  
-        margin-top: 30px;  
-        background: rgba(50, 50, 50, 0.7);  
-        border: 2px solid #fff;  
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);  
-        border-radius: 10px;  
-        padding: 20px;  
-        width: 300px;  
-        color: #fff;  
-        text-align: center;  
-    }  
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
 
-    .about-container hr {  
-        border: 0;  
-        border-top: 1px solid #ccc;  
-        margin: 10px 0;  
-    }  
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-    .footer {  
-        position: fixed;  
-        bottom: 50px;  
-        width: 100%;  
-        text-align: center;  
-        font-size: 15px;  
-        color: #888;  
-        z-index: 3;  
-    }  
-</style>
+    .link {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      font-size: 16px;
+      color: #ccc;
+      transition: color 0.3s ease;
+    }
 
-</head>  
-<body>  
-    <div class="container">  
-        <div class="avatar">  
-            <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar">  
-        </div>  
-        <a href="https://t.me/codermasochist" class="link">UID: 7130298880</a>  
-        <div class="buttons">  
-            <button class="btn-new" onclick="window.open('https://t.me/makimalove')">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>  
-            <button class="btn-new" onclick="window.open('https://t.me/cilsex')">𝚂𝚒𝚐𝚗𝚜 👀</button>  
-            <button class="btn-new" onclick="window.open('https://t.me/asicrev')">𝚁𝚎𝚟𝚒𝚎𝚠𝚜</button>  
-        </div>  
-        <div class="about-container">  
-            <strong>𝙰𝚋𝚘𝚞𝚝 𝚖𝚎:</strong>  
-            <hr>  
-            <p>𝙽𝚊𝚖𝚎: À𝚜𝚜𝚊.</p>  
-            <p>𝙱𝚒𝚛𝚝𝚑𝚍𝚊𝚝𝚎: 𝟹𝟶.𝟶𝟼.𝟸𝟶𝟶𝟾. (𝟷𝟼 𝚢. 𝚘.)</p>  
-            <p>𝙶𝚎𝚗𝚍𝚎𝚛: 𝙼𝚊𝚕𝚎. (𝚑𝚎/𝚑𝚒𝚖)</p>  
-            <p>𝙷𝚘𝚋𝚋𝚒𝚎𝚜: 𝚊𝚗𝚒𝚖𝚎, 𝚌𝚘𝚍𝚒𝚗𝚐 & 𝚜𝚕𝚎𝚎𝚙.</p>  
-        </div>  
-    </div>  <div class="footer">© 2025 codermasochist.</div>  
+    .link:hover {
+      color: #fff;
+    }
 
-<video autoplay muted loop id="bg-video" preload="auto">  
-    <source src="https://x0.at/PJQ-.mp4" type="video/mp4">  
-</video>  
+    .buttons {
+      margin-top: 20px;
+    }
 
-<script>  
-    const username = "codermasochist";  
-    const avatar = document.getElementById("tg-avatar");  
+    .btn-new {
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      background: none;
+      border: 1px solid #ccc;
+      color: #ccc;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-    function updateAvatar() {  
-        avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;  
-    }  
+    .btn-new:hover {
+      background: #ccc;
+      color: #000;
+    }
 
-    setInterval(updateAvatar, 60000);  
-</script>
+    .btn-new:after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 200px;
+      background: #fff;
+      opacity: 0.5;
+      position: absolute;
+      left: -40px;
+      top: -100px;
+      transform: rotate(45deg);
+      animation: slideme 3s ease-in-out infinite;
+    }
 
-</body>  
+    @keyframes slideme {
+      0% {
+        left: -30px;
+        margin-left: 0px;
+      }
+      30% {
+        left: 110%;
+        margin-left: 80px;
+      }
+      100% {
+        left: 110%;
+        margin-left: 80px;
+      }
+    }
+
+    .about-container {
+      margin-top: 30px;
+      background: rgba(50, 50, 50, 0.7);
+      border: 2px solid #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .about-container hr {
+      border: 0;
+      border-top: 1px solid #ccc;
+      margin: 10px 0;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 50px;
+      width: 100%;
+      text-align: center;
+      font-size: 15px;
+      color: #888;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-screen" id="loader">
+    <div class="loader"></div>
+    <div class="loading-text">Loading<span>.</span><span>.</span><span>.</span></div>
+  </div>
+
+  <div class="container" id="content">
+    <div class="avatar">
+      <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar" />
+    </div>
+    <a href="https://t.me/codermasochist" class="link">UID: 7130298880</a>
+    <div class="buttons">
+      <button class="btn-new" onclick="window.open('https://t.me/makimalove')">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>
+      <button class="btn-new" onclick="window.open('https://t.me/cilsex')">𝚂𝚒𝚐𝚗𝚜 👀</button>
+      <button class="btn-new" onclick="window.open('https://t.me/asicrev')">𝚁𝚎𝚟𝚒𝚎𝚠𝚜</button>
+    </div>
+    <div class="about-container">
+      <strong>𝙰𝚋𝚘𝚞𝚝 𝚖𝚎:</strong>
+      <hr />
+      <p>𝙽𝚊𝚖𝚎: À𝚜𝚜𝚊.</p>
+      <p>𝙱𝚒𝚛𝚝𝚑𝚍𝚊𝚝𝚎: 𝟹𝟶.𝟶𝟼.𝟸𝟶𝟶𝟾. (𝟷𝟼 𝚢. 𝚘.)</p>
+      <p>𝙶𝚎𝚗𝚍𝚎𝚛: 𝙼𝚊𝚕𝚎. (𝚑𝚎/𝚑𝚒𝚖)</p>
+      <p>𝙷𝚘𝚋𝚋𝚒𝚎𝚜: 𝚊𝚗𝚒𝚖𝚎, 𝚌𝚘𝚍𝚒𝚗𝚐 & 𝚜𝚕𝚎𝚎𝚙.</p>
+    </div>
+  </div>
+  <div class="footer">© 2025 codermasochist.</div>
+
+  <video autoplay muted loop id="bg-video" preload="auto" oncanplaythrough="showContent()">
+    <source src="https://x0.at/PJQ-.mp4" type="video/mp4" />
+  </video>
+
+  <script>
+    const username = "codermasochist";
+    const avatar = document.getElementById("tg-avatar");
+
+    function updateAvatar() {
+      avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;
+    }
+
+    setInterval(updateAvatar, 60000);
+
+    function showContent() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("content").style.opacity = "1";
+    }
+  </script>
+</body>
 </html>
