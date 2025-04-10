@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Info | Assa</title>
+  <title>Assa Info.</title>
   <style>
     body {
       margin: 0;
@@ -17,10 +17,24 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
       z-index: -1;
+      transform: none;
+    }
+
+    @media screen and (min-aspect-ratio: 4/3) {
+      #bg-video {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        width: 100vh;
+        height: 100vw;
+        left: 50%;
+        top: 50%;
+        object-fit: cover;
+        translate: -50% -50%;
+      }
     }
 
     .loading-screen {
@@ -214,7 +228,7 @@
     <div class="avatar">
       <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar" />
     </div>
-    <a href="https://t.me/codermasochist" class="link">UID: 7130298880</a>
+    <a href="https://t.me/codermasochist" class="link">Id: 7130298880</a>
     <div class="buttons">
       <button class="btn-new" onclick="window.open('https://t.me/makimalove')">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>
       <button class="btn-new" onclick="window.open('https://t.me/cilsex')">𝚂𝚒𝚐𝚗𝚜 👀</button>
