@@ -21,20 +21,6 @@
       height: 100vh;
       object-fit: cover;
       z-index: -1;
-      transform: none;
-    }
-
-    @media screen and (min-aspect-ratio: 4/3) {
-      #bg-video {
-        transform: rotate(90deg);
-        transform-origin: center center;
-        width: 100vh;
-        height: 100vw;
-        left: 50%;
-        top: 50%;
-        object-fit: cover;
-        translate: -50% -50%;
-      }
     }
 
     .loading-screen {
@@ -243,6 +229,7 @@
       <p>𝙷𝚘𝚋𝚋𝚒𝚎𝚜: 𝚊𝚗𝚒𝚖𝚎, 𝚌𝚘𝚍𝚒𝚗𝚐 & 𝚜𝚕𝚎𝚎𝚙.</p>
     </div>
   </div>
+
   <div class="footer">© 2025 codermasochist.</div>
 
   <video autoplay muted loop id="bg-video" preload="auto" oncanplaythrough="showContent()">
