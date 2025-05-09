@@ -48,8 +48,12 @@
       align-items: center;
       flex-direction: column;
       z-index: 9999;
-      opacity: 1;
-      transition: opacity 1s ease;
+      transition: all 0.5s ease;
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     .loader {
@@ -59,6 +63,11 @@
       border-top: 6px solid #fff;
       border-radius: 50%;
       animation: spin 1s linear infinite;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-screen.hidden .loader {
+      opacity: 0;
     }
 
     @keyframes spin {
@@ -73,6 +82,11 @@
       color: #eee;
       display: flex;
       gap: 3px;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-screen.hidden .loading-text {
+      opacity: 0;
     }
 
     .loading-text span {
@@ -105,8 +119,14 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       cursor: pointer;
-      display: none;
-      transition: background 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .loading-screen.hidden .continue-button {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .continue-button:hover {
@@ -271,7 +291,7 @@
 
   <div class="footer">© codermasochist.</div>
 
-  <video id="bg-video" preload="auto" loop>
+  <video id="bg-video" preload="auto" loop muted>
     <source src="https://x0.at/MbN3.mp4" type="video/mp4" />
   </video>
 
@@ -289,18 +309,21 @@
     setInterval(updateAvatar, 60000);
 
     video.addEventListener("canplaythrough", () => {
-      continueBtn.style.display = "block";
+      setTimeout(() => {
+        loader.classList.add("hidden");
+      }, 500);
     });
 
     continueBtn.addEventListener("click", () => {
       video.muted = false;
       video.play();
-      loader.style.opacity = "0";
+      
       setTimeout(() => {
-        loader.style.display = "none";
         content.classList.add("visible");
-      }, 1000);
+      }, 100);
     });
+    
+    video.load();
   </script>
 </body>
 </html>
