@@ -246,6 +246,7 @@
   <div class="loading-screen" id="loader">
     <div class="loader"></div>
     <div class="loading-text">загрузка<span>.</span><span>.</span><span>.</span></div>
+    <p id="loading-message" style="color: #eee; display: none;">фон загрузился! жмякни кнопку ниже</p>
     <button class="continue-button" id="continueBtn">тыыык</button>
   </div>
 
@@ -282,6 +283,7 @@
     const loader = document.getElementById("loader");
     const continueBtn = document.getElementById("continueBtn");
     const content = document.getElementById("content");
+    const loadingMessage = document.getElementById("loading-message");
 
     function updateAvatar() {
       avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;
@@ -289,6 +291,7 @@
     setInterval(updateAvatar, 60000);
 
     video.addEventListener("canplaythrough", () => {
+      loadingMessage.style.display = "block";
       continueBtn.style.display = "block";
     });
 
