@@ -94,15 +94,38 @@
       }
     }
 
+    .continue-button {
+      margin-top: 25px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #000;
+      color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+      transition: background 0.3s ease;
+    }
+
+    .continue-button:hover {
+      background: #444;
+    }
+
     .container {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
       opacity: 0;
-      transition: opacity 1s ease;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .container.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .avatar {
@@ -215,14 +238,15 @@
       color: #888;
       z-index: 3;
     }
-
   </style>
 </head>
 <body>
   <div class="loading-screen" id="loader">
     <div class="loader"></div>
     <div class="loading-text">Loading<span>.</span><span>.</span><span>.</span></div>
+    <button class="continue-button" id="continueBtn">Continue</button>
   </div>
+
   <div class="container" id="content">
     <div class="avatar">
       <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar" />
@@ -230,36 +254,48 @@
     <a href="https://t.me/assamur" class="link" style="color: blue;">(id: 7130298880)</a>
     <div class="buttons">
       <button class="btn-new" onclick="window.open('https://t.me/makimalove')" style="color: purple;">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>
-<button class="btn-new" onclick="window.open('https://t.me/cilsex')" style="color: purple;">𝚂𝚒𝚐𝚗𝚜 👀</button>
-<button class="btn-new" onclick="window.open('https://t.me/asicrev')" style="color: purple;">𝚁𝚎𝚟𝚒𝚎𝚠𝚜</button>
+      <button class="btn-new" onclick="window.open('https://t.me/cilsex')" style="color: purple;">𝚂𝚒𝚐𝚗𝚜 👀</button>
+      <button class="btn-new" onclick="window.open('https://t.me/asicrev')" style="color: purple;">𝚁𝚎𝚟𝚒𝚎𝚠𝚜</button>
     </div>
     <div class="about-container">
-  <strong style="color: red;">𝙰𝚋𝚘𝚞𝚝 𝚖𝚎:</strong>
-  <hr />
-  <p><span style="color: lime;">𝚠𝚑𝚘𝚊𝚖𝚒:</span> <span style="color: yellow;">À𝚜𝚜𝚊.</span></p>
-  <p><span style="color: lime;">𝙱𝚒𝚛𝚝𝚑𝚍𝚊𝚝𝚎:</span> <span style="color: yellow;">𝟹𝟶.𝟶6.𝟸𝟶𝟶𝟾. <span style="color: black;">(𝟷𝟼 𝚢. 𝚘.)</span></span></p>
-  <p><span style="color: lime;">𝙶𝚎𝚗𝚍𝚎𝚛:</span> <span style="color: yellow;">𝙼𝚊𝚕𝚎. <span style="color: black;">(𝚑𝚎/𝚑𝚒𝚖)</span></span></p>
-  <p><span style="color: lime;">𝙷𝚘𝚋𝚋𝚒𝚎𝚜:</span> <span style="color: yellow;">𝚊𝚗𝚒𝚖𝚎, <span style="color: red;">𝚌𝚘𝚍𝚒𝚗𝚐</span> & 𝚜𝚕𝚎𝚎𝚙.</span></p>
+      <strong style="color: red;">𝙰𝚋𝚘𝚞𝚝 𝚖𝚎:</strong>
+      <hr />
+      <p><span style="color: lime;">𝚠𝚑𝚘𝚊𝚖𝚒:</span> <span style="color: yellow;">À𝚜𝚜𝚊.</span></p>
+      <p><span style="color: lime;">𝙱𝚒𝚛𝚝𝚑𝚍𝚊𝚝𝚎:</span> <span style="color: yellow;">𝟹𝟶.𝟶6.𝟸𝟶𝟶𝟾. <span style="color: black;">(𝟷𝟼 𝚢. 𝚘.)</span></span></p>
+      <p><span style="color: lime;">𝙶𝚎𝚗𝚍𝚎𝚛:</span> <span style="color: yellow;">𝙼𝚊𝚕𝚎. <span style="color: black;">(𝚑𝚎/𝚑𝚒𝚖)</span></span></p>
+      <p><span style="color: lime;">𝙷𝚘𝚋𝚋𝚒𝚎𝚜:</span> <span style="color: yellow;">𝚊𝚗𝚒𝚖𝚎, <span style="color: red;">𝚌𝚘𝚍𝚒𝚗𝚐</span> & 𝚜𝚕𝚎𝚎𝚙.</span></p>
     </div>
   </div>
+
   <div class="footer">© 2025 codermasochist.</div>
-  <video autoplay muted loop id="bg-video" preload="auto" oncanplaythrough="showContent()">
+
+  <video id="bg-video" preload="auto" loop>
     <source src="https://x0.at/MbN3.mp4" type="video/mp4" />
   </video>
+
   <script>
     const username = "codermasochist";
     const avatar = document.getElementById("tg-avatar");
+    const video = document.getElementById("bg-video");
+    const loader = document.getElementById("loader");
+    const continueBtn = document.getElementById("continueBtn");
+    const content = document.getElementById("content");
 
     function updateAvatar() {
       avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;
     }
-
     setInterval(updateAvatar, 60000);
 
-    function showContent() {
-      document.getElementById("loader").style.display = "none";
-      document.getElementById("content").style.opacity = "1";
-    }
+    video.addEventListener("canplaythrough", () => {
+      continueBtn.style.display = "block";
+    });
+
+    continueBtn.addEventListener("click", () => {
+      video.muted = false;
+      video.play();
+      loader.style.display = "none";
+      content.classList.add("visible");
+    });
   </script>
 </body>
 </html>
