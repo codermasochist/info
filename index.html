@@ -48,12 +48,8 @@
       align-items: center;
       flex-direction: column;
       z-index: 9999;
-      transition: all 0.5s ease;
-    }
-
-    .loading-screen.hidden {
-      opacity: 0;
-      pointer-events: none;
+      opacity: 1;
+      transition: opacity 1s ease;
     }
 
     .loader {
@@ -63,11 +59,6 @@
       border-top: 6px solid #fff;
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      transition: opacity 0.5s ease;
-    }
-
-    .loading-screen.hidden .loader {
-      opacity: 0;
     }
 
     @keyframes spin {
@@ -82,11 +73,6 @@
       color: #eee;
       display: flex;
       gap: 3px;
-      transition: opacity 0.5s ease;
-    }
-
-    .loading-screen.hidden .loading-text {
-      opacity: 0;
     }
 
     .loading-text span {
@@ -119,14 +105,8 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       cursor: pointer;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-    }
-
-    .loading-screen.hidden .continue-button {
-      opacity: 1;
-      transform: translateY(0);
+      display: none;
+      transition: background 0.3s ease;
     }
 
     .continue-button:hover {
@@ -266,7 +246,7 @@
   <div class="loading-screen" id="loader">
     <div class="loader"></div>
     <div class="loading-text">загрузка<span>.</span><span>.</span><span>.</span></div>
-    <button class="continue-button" id="continueBtn">continue ></button>
+    <button class="continue-button" id="continueBtn">тыыык</button>
   </div>
 
   <div class="container" id="content">
@@ -289,9 +269,9 @@
     </div>
   </div>
 
-  <div class="footer">© codermasochist.</div>
+  <div class="footer">© 2025 codermasochist.</div>
 
-  <video id="bg-video" preload="auto" loop muted>
+  <video id="bg-video" preload="auto" loop>
     <source src="https://x0.at/MbN3.mp4" type="video/mp4" />
   </video>
 
@@ -309,21 +289,18 @@
     setInterval(updateAvatar, 60000);
 
     video.addEventListener("canplaythrough", () => {
-      setTimeout(() => {
-        loader.classList.add("hidden");
-      }, 500);
+      continueBtn.style.display = "block";
     });
 
     continueBtn.addEventListener("click", () => {
       video.muted = false;
       video.play();
-      
+      loader.style.opacity = "0";
       setTimeout(() => {
+        loader.style.display = "none";
         content.classList.add("visible");
-      }, 100);
+      }, 1000); 
     });
-    
-    video.load();
   </script>
 </body>
 </html>
