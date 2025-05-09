@@ -246,17 +246,14 @@
   <div class="loading-screen" id="loader">
     <div class="loader"></div>
     <div class="loading-text">загрузка<span>.</span><span>.</span><span>.</span></div>
-    <div id="loader-message" style="color: white; display: none;">
-      <p>фон загрузился! жмякни ниже кнопочку</p>
-    </div>
-    <button class="continue-button" id="continueBtn">тыыык</button>
+    <button class="continue-button" id="continueBtn">тыык ></button>
   </div>
 
   <div class="container" id="content">
     <div class="avatar">
       <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar" />
     </div>
-    <a href="https://t.me/assamur" class="link" style="color: blue;">(id: 7130298880)</a>
+    <a href="https://t.me/codermasochist" class="link" style="color: blue;">(id: 7130298880)</a>
     <div class="buttons">
       <button class="btn-new" onclick="window.open('https://t.me/makimalove')" style="color: purple;">𝙲𝚑𝚊𝚗𝚗𝚎𝚕</button>
       <button class="btn-new" onclick="window.open('https://t.me/cilsex')" style="color: purple;">𝚂𝚒𝚐𝚗𝚜 👀</button>
@@ -285,7 +282,6 @@
     const loader = document.getElementById("loader");
     const continueBtn = document.getElementById("continueBtn");
     const content = document.getElementById("content");
-    const loaderMessage = document.getElementById("loader-message");
 
     function updateAvatar() {
       avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;
@@ -293,18 +289,17 @@
     setInterval(updateAvatar, 60000);
 
     video.addEventListener("canplaythrough", () => {
-      loader.style.opacity = "0";
-      setTimeout(() => {
-        loader.style.display = "none";
-        loaderMessage.style.display = "block";
-        continueBtn.style.display = "inline-block";
-      }, 1000); 
+      continueBtn.style.display = "block";
     });
 
     continueBtn.addEventListener("click", () => {
-      content.classList.add("visible"); 
-      loaderMessage.style.display = "none";  
-      continueBtn.style.display = "none";  
+      video.muted = false;
+      video.play();
+      loader.style.opacity = "0";
+      setTimeout(() => {
+        loader.style.display = "none";
+        content.classList.add("visible");
+      }, 1000); 
     });
   </script>
 </body>
