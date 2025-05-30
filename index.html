@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Assa | info</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
@@ -13,8 +13,8 @@
             --dark: #0a0a18;
             --darker: #050510;
             --text: #ffffff;
-            --shadow: 0 0 15px rgba(255, 42, 109, 0.7);
-            --neon-glow: 0 0 10px rgba(255, 42, 109, 0.8), 0 0 20px rgba(255, 42, 109, 0.6);
+            --shadow: 0 0 10px rgba(255, 42, 109, 0.5);
+            --neon-glow: 0 0 8px rgba(255, 42, 109, 0.6);
         }
         
         * {
@@ -22,6 +22,8 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
@@ -40,27 +42,27 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 42, 109, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(5, 217, 232, 0.1) 0%, transparent 20%);
+                radial-gradient(circle at 20% 30%, rgba(255, 42, 109, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(5, 217, 232, 0.08) 0%, transparent 20%);
             z-index: -1;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             position: relative;
             z-index: 1;
         }
         
         header {
-            padding: 30px 0;
+            padding: 20px 0;
             text-align: center;
             position: relative;
         }
         
         .logo {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
@@ -71,6 +73,7 @@
             letter-spacing: -1px;
             position: relative;
             display: inline-block;
+            will-change: transform;
         }
         
         .logo::after {
@@ -79,7 +82,7 @@
             bottom: -5px;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
             box-shadow: var(--neon-glow);
@@ -88,9 +91,9 @@
         .nav-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin: 30px 0;
+            margin: 20px 0;
         }
         
         .nav-btn {
@@ -98,72 +101,63 @@
             color: var(--text);
             border: 2px solid var(--primary);
             border-radius: 50px;
-            padding: 12px 30px;
-            font-size: 1.1rem;
+            padding: 10px 20px;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
             backdrop-filter: blur(5px);
             position: relative;
             overflow: hidden;
+            will-change: transform, box-shadow;
         }
         
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 42, 109, 0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .nav-btn:hover::before {
-            left: 100%;
-        }
-        
-        .nav-btn:hover, .nav-btn.active {
+        .nav-btn.active {
             background: rgba(255, 42, 109, 0.2);
             box-shadow: var(--neon-glow);
-            transform: translateY(-3px);
+        }
+        
+        /* Touch devices */
+        @media (hover: hover) and (pointer: fine) {
+            .nav-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 42, 109, 0.2), transparent);
+                transition: 0.5s;
+            }
+            
+            .nav-btn:hover::before {
+                left: 100%;
+            }
+            
+            .nav-btn:hover {
+                background: rgba(255, 42, 109, 0.2);
+                box-shadow: var(--neon-glow);
+                transform: translateY(-3px);
+            }
         }
         
         /* Avatar Styles */
         .avatar-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .avatar {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             overflow: hidden;
             border: 3px solid var(--primary);
             box-shadow: var(--neon-glow);
             transition: all 0.4s ease;
             position: relative;
-        }
-        
-        .avatar:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 42, 109, 0.8);
-        }
-        
-        .avatar::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 50%;
-            border: 2px solid var(--secondary);
-            opacity: 0.6;
-            z-index: -1;
-            animation: rotate 6s linear infinite;
+            will-change: transform;
         }
         
         .avatar img {
@@ -172,22 +166,17 @@
             object-fit: cover;
         }
         
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
         /* Page Styles */
         .page {
             display: none;
-            padding: 30px;
+            padding: 20px;
             background: rgba(10, 10, 24, 0.5);
-            border-radius: 20px;
+            border-radius: 15px;
             border: 1px solid rgba(255, 42, 109, 0.2);
-            backdrop-filter: blur(10px);
-            margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.5s ease;
+            backdrop-filter: blur(8px);
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.4s ease;
         }
         
         .page.active {
@@ -195,40 +184,38 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         /* Info Page */
         .info-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         
         .info-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
             color: var(--secondary);
-            text-shadow: 0 0 10px rgba(5, 217, 232, 0.5);
         }
         
         .info-header p {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         .info-card {
             background: rgba(20, 20, 40, 0.6);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
             border: 1px solid rgba(255, 42, 109, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .info-item {
-            margin: 20px 0;
-            font-size: 1.3rem;
+            margin: 15px 0;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
         }
@@ -237,8 +224,7 @@
             color: var(--secondary);
             font-weight: 600;
             display: inline-block;
-            width: 150px;
-            text-shadow: 0 0 5px rgba(5, 217, 232, 0.5);
+            width: 120px;
         }
         
         .info-value {
@@ -248,128 +234,102 @@
         .age-value {
             color: var(--primary);
             font-weight: 700;
-            text-shadow: 0 0 5px rgba(255, 42, 109, 0.5);
         }
         
         .nft-section {
-            margin-top: 40px;
+            margin-top: 30px;
         }
         
         .nft-section h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
             color: var(--primary);
-            text-shadow: var(--neon-glow);
             text-align: center;
         }
         
         .nft-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
         
         .nft-item {
             background: rgba(30, 30, 60, 0.5);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             border: 1px solid rgba(255, 42, 109, 0.3);
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .nft-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(255, 42, 109, 0.4);
-            border-color: var(--primary);
+            will-change: transform;
         }
         
         .nft-animation {
-            width: 140px;
-            height: 140px;
+            width: 100px;
+            height: 100px;
         }
         
         .nft-name {
-            margin-top: 15px;
+            margin-top: 10px;
             font-weight: 600;
             color: var(--secondary);
             text-align: center;
+            font-size: 0.9rem;
         }
         
         /* Donate Page */
         .donate-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         
         .donate-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
             color: var(--primary);
-            text-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
         }
         
         .donate-header p {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         .donate-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
         
         .donate-card {
             background: linear-gradient(145deg, rgba(30, 30, 60, 0.7), rgba(10, 10, 24, 0.7));
-            border-radius: 15px;
-            padding: 35px;
+            border-radius: 12px;
+            padding: 25px;
             text-align: center;
             border: 1px solid rgba(5, 217, 232, 0.3);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .donate-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,42,109,0.1) 0%, transparent 70%);
-            transform: rotate(30deg);
-        }
-        
-        .donate-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(5, 217, 232, 0.3);
-            border-color: var(--secondary);
+            will-change: transform;
         }
         
         .donate-icon {
-            font-size: 3.5rem;
-            margin-bottom: 25px;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
             color: var(--secondary);
-            text-shadow: 0 0 15px rgba(5, 217, 232, 0.7);
         }
         
         .donate-title {
-            font-size: 1.7rem;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
             color: var(--text);
         }
         
         .donate-desc {
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-size: 1rem;
         }
         
         .donate-btn {
@@ -377,48 +337,32 @@
             color: var(--darker);
             border: none;
             border-radius: 50px;
-            padding: 15px 35px;
-            font-size: 1.1rem;
+            padding: 12px 25px;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 10px;
             display: inline-block;
             text-decoration: none;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(255, 42, 109, 0.4);
+            box-shadow: 0 3px 10px rgba(255, 42, 109, 0.3);
+            will-change: transform;
         }
         
-        .donate-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .donate-btn:hover::before {
-            left: 100%;
-        }
-        
-        .donate-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 42, 109, 0.8);
+        .pulse {
+            animation: pulse 2s infinite;
         }
         
         /* Links Page */
         .links-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         
         .links-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
@@ -427,79 +371,67 @@
         
         .links-header p {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         .social-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
         
         .social-card {
             background: linear-gradient(145deg, rgba(30, 30, 60, 0.7), rgba(10, 10, 24, 0.7));
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
             border: 1px solid rgba(255, 42, 109, 0.3);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .social-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(255, 42, 109, 0.4);
-            border-color: var(--primary);
+            will-change: transform;
         }
         
         .social-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             color: var(--primary);
-            text-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
         }
         
         .social-name {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
             font-weight: 700;
         }
         
         .social-desc {
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-grow: 1;
+            font-size: 0.95rem;
         }
         
         .social-link {
             background: rgba(255, 42, 109, 0.2);
             color: var(--text);
             text-decoration: none;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
             width: 100%;
-            max-width: 200px;
+            max-width: 180px;
             font-weight: 600;
             border: 1px solid var(--primary);
-        }
-        
-        .social-link:hover {
-            background: var(--primary);
-            box-shadow: var(--neon-glow);
-            transform: scale(1.05);
         }
         
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px 0 20px;
-            margin-top: 50px;
-            font-size: 1rem;
+            padding: 30px 0 15px;
+            margin-top: 30px;
+            font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.6);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -512,88 +444,106 @@
             font-weight: 700;
         }
         
-        /* Responsive */
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .nav-btn {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-            
-            .page {
-                padding: 20px;
-            }
-            
-            .info-item {
-                font-size: 1.1rem;
-            }
-            
-            .nft-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-
-            .avatar {
-                width: 120px;
-                height: 120px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .nav-container {
-                gap: 10px;
-            }
-            
-            .nav-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-            
-            .donate-grid, .social-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .info-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .info-label {
-                margin-bottom: 5px;
-            }
-
-            .avatar {
-                width: 100px;
-                height: 100px;
-            }
-        }
-        
-        /* Neon Pulse Animation */
+        /* Animations */
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 42, 109, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(255, 42, 109, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0); }
         }
         
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Floating animation */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
         
         .floating {
-            animation: float 4s ease-in-out infinite;
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Reduced motion */
+        @media (prefers-reduced-motion) {
+            .floating, .pulse {
+                animation: none;
+            }
+            
+            .page {
+                animation: none;
+            }
+        }
+        
+        /* Desktop specific */
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            header {
+                padding: 30px 0;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .nav-container {
+                gap: 15px;
+                margin: 25px 0;
+            }
+            
+            .nav-btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+            
+            .avatar {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .page {
+                padding: 25px;
+                margin-top: 20px;
+            }
+            
+            .info-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .info-item {
+                font-size: 1.2rem;
+            }
+            
+            .nft-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 20px;
+            }
+            
+            .nft-animation {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .donate-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 25px;
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        /* Large screens */
+        @media (min-width: 992px) {
+            .donate-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -611,14 +561,14 @@
         <!-- Info Page -->
         <section id="info" class="page active">
             <div class="info-header">
-                <h1></> Info.</h1>
+                <h1>Info.</h1>
                 <p>Немного обо мне</p>
             </div>
             
             <!-- Avatar Container -->
             <div class="avatar-container">
                 <div class="avatar">
-                    <img id="tg-avatar" src="https://t.me/i/userpic/320/codermasochist.jpg" alt="Telegram Avatar" />
+                    <img id="tg-avatar" src="https://t.me/i/userpic/160/codermasochist.jpg" alt="Telegram Avatar" loading="lazy" />
                 </div>
             </div>
             
@@ -740,7 +690,7 @@
                     </div>
                     <h3 class="social-name">TikTok</h3>
                     <p class="social-desc">@codermasochist</p>
-                    <a href="https://www.tiktok.com/@codermasochist?_t=ZT-8ucUfIzvscQ&_r=1" class="social-link">Перейти</a>
+                    <a href="https://www.tiktok.com/@codermasochist" class="social-link">Перейти</a>
                 </div>
                 
                 <div class="social-card">
@@ -786,21 +736,17 @@
             });
         });
         
-        // Age calculation
+        // Age calculation - optimized for performance
         function calculateAge() {
-            const birthDate = new Date(2008, 5, 30); // June 30, 2008 (months are 0-indexed)
+            const birthDate = new Date(2008, 5, 30);
             const now = new Date();
-            
-            // Calculate total years with decimals
             const years = (now - birthDate) / (1000 * 60 * 60 * 24 * 365.25);
-            
-            // Format to 9 decimal places
-            document.getElementById('age').textContent = years.toFixed(9) + ' y. o.';
+            document.getElementById('age').textContent = years.toFixed(6) + ' y. o.';
         }
         
-        // Initialize age and update every second for real-time update
+        // Initialize age and update every second
         calculateAge();
-        setInterval(calculateAge, 100);
+        setInterval(calculateAge, 1000);
         
         // Copy TON address to clipboard
         document.getElementById('copy-ton').addEventListener('click', () => {
@@ -809,10 +755,8 @@
                     const btn = document.getElementById('copy-ton');
                     const originalText = btn.textContent;
                     btn.textContent = '✓ Скопировано!';
-                    btn.classList.add('pulse');
                     setTimeout(() => {
                         btn.textContent = originalText;
-                        btn.classList.remove('pulse');
                     }, 2000);
                 })
                 .catch(err => {
@@ -820,7 +764,7 @@
                 });
         });
         
-        // Load NFT animations from provided JSON URLs
+        // Load NFT animations only when in viewport
         const nfts = [
             { id: 'nft1', url: 'https://nft.fragment.com/gift/JellyBunny-58211.lottie.json' },
             { id: 'nft2', url: 'https://nft.fragment.com/gift/PartySparkler-36813.lottie.json' },
@@ -830,26 +774,51 @@
             { id: 'nft6', url: 'https://nft.fragment.com/gift/SakuraFlower-12955.lottie.json' }
         ];
         
-        nfts.forEach(nft => {
-            const anim = lottie.loadAnimation({
-                container: document.getElementById(nft.id),
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: nft.url
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const nftId = entry.target.id;
+                    const nft = nfts.find(item => item.id === nftId);
+                    
+                    if (nft && !entry.target.hasChildNodes()) {
+                        lottie.loadAnimation({
+                            container: entry.target,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            path: nft.url
+                        });
+                    }
+                    
+                    observer.unobserve(entry.target);
+                }
             });
+        }, { threshold: 0.1 });
+        
+        // Observe each NFT container
+        nfts.forEach(nft => {
+            const element = document.getElementById(nft.id);
+            if (element) {
+                observer.observe(element);
+            }
         });
         
         // Telegram avatar update function
         function updateAvatar() {
             const username = 'codermasochist';
             const avatar = document.getElementById('tg-avatar');
-            avatar.src = `https://t.me/i/userpic/320/${username}.jpg?${new Date().getTime()}`;
+            const isMobile = window.innerWidth < 768;
+            const size = isMobile ? '160' : '320';
+            
+            avatar.src = `https://t.me/i/userpic/${size}/${username}.jpg?${new Date().getTime()}`;
         }
         
-        // Initialize and update avatar every minute
+        // Initialize and update avatar every 5 minutes
         updateAvatar();
-        setInterval(updateAvatar, 60000);
+        setInterval(updateAvatar, 300000);
+        
+        // Touch optimizations
+        document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
 </html>
