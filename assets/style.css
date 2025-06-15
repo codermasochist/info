@@ -53,36 +53,19 @@ header {
 }
 
 .logo {
-    font-size: 2.8rem;
-    font-weight: 800;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: var(--shadow);
-    margin-bottom: 10px;
-    letter-spacing: -1px;
-    position: relative;
     display: inline-block;
+    margin-bottom: 10px;
+    position: relative;
     will-change: transform;
     text-decoration: none;
+    height: 45px;
 }
 
-.logo::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 2px;
-    box-shadow: var(--neon-glow);
-}
-
-.logo img {
-    height: 40px;
+.counter-img {
+    height: 100%;
     width: auto;
+    border-radius: 5px;
+    box-shadow: var(--neon-glow);
 }
 
 .nav-container {
@@ -473,7 +456,7 @@ footer {
     }
     
     .logo {
-        font-size: 3rem;
+        height: 50px;
     }
     
     .nav-container {
@@ -522,10 +505,6 @@ footer {
     .social-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
-    }
-    
-    .logo img {
-        height: 45px;
     }
 }
 
