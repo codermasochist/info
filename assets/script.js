@@ -59,8 +59,6 @@ function loadNftAnimations() {
                         path: nft.url
                     });
                 }
-                
-                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
@@ -71,6 +69,29 @@ function loadNftAnimations() {
             observer.observe(element);
         }
     });
+}
+
+function setupNftToggle() {
+    const toggleBtn = document.getElementById('toggle-nft');
+    const nftGrid = document.getElementById('nft-grid');
+    let nftsLoaded = false;
+    
+    if (toggleBtn && nftGrid) {
+        toggleBtn.addEventListener('click', () => {
+            if (nftGrid.style.display === 'none' || nftGrid.style.display === '') {
+                nftGrid.style.display = 'grid';
+                toggleBtn.textContent = 'Hide NFT';
+                
+                if (!nftsLoaded) {
+                    loadNftAnimations();
+                    nftsLoaded = true;
+                }
+            } else {
+                nftGrid.style.display = 'none';
+                toggleBtn.textContent = 'View NFT';
+            }
+        });
+    }
 }
 
 function setActiveNavButton(pageId) {
@@ -87,7 +108,7 @@ function initPage(pageId) {
     if (pageId === 'info') {
         calculateAge();
         setInterval(calculateAge, 1000);
-        loadNftAnimations();
+        setupNftToggle();
         updateAvatar();
         setInterval(updateAvatar, 300000);
     }
