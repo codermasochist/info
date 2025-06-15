@@ -61,11 +61,6 @@ header {
     height: 80px;
 }
 
-.counter-img {
-    height: 100%;
-    width: auto;
-    border-radius: 5px;
-    box-shadow: var(--neon-glow);
 }
 
 @media (min-width: 768px) {
