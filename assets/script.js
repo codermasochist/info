@@ -42,6 +42,11 @@ function loadNftAnimations() {
         { id: 'nft4', url: 'https://nft.fragment.com/gift/LolPop-227888.lottie.json' },
         { id: 'nft5', url: 'https://nft.fragment.com/gift/LunarSnake-34446.lottie.json' },
         { id: 'nft6', url: 'https://nft.fragment.com/gift/SakuraFlower-12955.lottie.json' }
+        { id: 'nft7', url: 'https://nft.fragment.com/gift/PetSnake-12077.lottie.json' },
+        { id: 'nft8', url: 'https://nft.fragment.com/gift/SnakeBox-11489.lottie.json' },
+        { id: 'nft9', url: 'https://nft.fragment.com/gift/BowTie-9649.lottie.json' },
+        { id: 'nft10', url: 'https://nft.fragment.com/gift/LightSword-30916.lottie.json' },
+        { id: 'nft11', url: 'https://nft.fragment.com/gift/RestlessJar-12063.lottie.json' }
     ];
     
     const observer = new IntersectionObserver((entries) => {
